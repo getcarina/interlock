@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	log "github.com/Sirupsen/logrus"
-	"github.com/ehazlett/interlock"
-	"github.com/ehazlett/interlock/plugins"
+	"github.com/rgbkrk/interlocarina"
+	"github.com/rgbkrk/interlocarina/plugins"
 	"github.com/samalba/dockerclient"
 )
 

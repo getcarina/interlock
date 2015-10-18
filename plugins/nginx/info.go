@@ -1,14 +1,14 @@
 package nginx
 
 import (
-	"github.com/ehazlett/interlock"
+	"github.com/rgbkrk/interlocarina"
 )
 
 const (
 	pluginName        = "nginx"
 	pluginVersion     = "0.1"
 	pluginDescription = "nginx plugin"
-	pluginUrl         = "https://github.com/ehazlett/interlock/tree/master/plugins/nginx"
+	pluginUrl         = "https://github.com/rgbkrk/interlocarina/tree/master/plugins/nginx"
 )
 
 var (

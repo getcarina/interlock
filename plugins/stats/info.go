@@ -1,14 +1,14 @@
 package stats
 
 import (
-	"github.com/ehazlett/interlock"
+	"github.com/rgbkrk/interlocarina"
 )
 
 const (
 	pluginName        = "stats"
 	pluginVersion     = "0.1"
 	pluginDescription = "cluster stats to graphite"
-	pluginUrl         = "https://github.com/ehazlett/interlock/tree/master/plugins/stats"
+	pluginUrl         = "https://github.com/rgbkrk/interlocarina/tree/master/plugins/stats"
 )
 
 var (

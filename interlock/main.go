@@ -7,8 +7,8 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/ehazlett/interlock/plugins"
-	"github.com/ehazlett/interlock/version"
+	"github.com/rgbkrk/interlocarina/plugins"
+	"github.com/rgbkrk/interlocarina/version"
 )
 
 func getTLSConfig(caCert, cert, key []byte, allowInsecure bool) (*tls.Config, error) {

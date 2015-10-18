@@ -31,13 +31,13 @@ The following configuration is available through environment variables:
 
 An example run of an Interlock container using the `nginx` plugin is as follows:
 
-`docker run -p 80:80 -d ehazlett/interlock --swarm-url tcp://1.2.3.4:2375 --plugin nginx start`
+`docker run -p 80:80 -d rgbkrk/interlocarina --swarm-url tcp://1.2.3.4:2375 --plugin nginx start`
 
 If you want SSL support, enter a path to the cert (probably want a mounted volume) and then expose 443:
 
 > Note: the SSL certificate must exist in the directory specified.  The paths are joined so you only need to specify the certificate name -- not the full path.
 
-`docker run -p 80:80 -p 443:443 -d -v /etc/ssl:/ssl -e NGINX_SSL_CERT_DIR=/ssl ehazlett/interlock --swarm-url tcp://1.2.3.4:2375 --plugin nginx start`
+`docker run -p 80:80 -p 443:443 -d -v /etc/ssl:/ssl -e NGINX_SSL_CERT_DIR=/ssl rgbkrk/interlocarina --swarm-url tcp://1.2.3.4:2375 --plugin nginx start`
 
 Then run a container using `INTERLOCK_DATA` to specify the certificate name to use:
 

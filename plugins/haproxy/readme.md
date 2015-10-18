@@ -34,7 +34,7 @@ The following configuration is available through environment variables:
 
 An example run of an Interlock container using the `haproxy` plugin is as follows:
 
-`docker run -p 80:80 -d ehazlett/interlock --swarm-url tcp://1.2.3.4:2375 --plugin haproxy start`
+`docker run -p 80:80 -d rgbkrk/interlocarina --swarm-url tcp://1.2.3.4:2375 --plugin haproxy start`
 
 Some things to note about this running container:
 
@@ -55,19 +55,19 @@ Some things to note about this running container:
 
 If you used Machine to create your Swarm, you can use this command to start interlock:
 
-`docker run -p 80:80 -d -v /etc/docker:/etc/docker ehazlett/interlock --swarm-url $DOCKER_HOST --swarm-tls-ca-cert=/etc/docker/ca.pem --swarm-tls-cert=/etc/docker/server.pem --swarm-tls-key=/etc/docker/server-key.pem --plugin haproxy start`
+`docker run -p 80:80 -d -v /etc/docker:/etc/docker rgbkrk/interlocarina --swarm-url $DOCKER_HOST --swarm-tls-ca-cert=/etc/docker/ca.pem --swarm-tls-cert=/etc/docker/server.pem --swarm-tls-key=/etc/docker/server-key.pem --plugin haproxy start`
 
 ## SSL
 
 If you want SSL support, enter a path to the cert (probably want a mounted volume) and then expose 443:
 
-`docker run -p 80:80 -p 443:443 -d -v /etc/ssl:/ssl -e HAPROXY_SSL_CERT=/ssl/cert.pem ehazlett/interlock --swarm-url tcp://1.2.3.4:2375 --plugin haproxy start`
+`docker run -p 80:80 -p 443:443 -d -v /etc/ssl:/ssl -e HAPROXY_SSL_CERT=/ssl/cert.pem rgbkrk/interlocarina --swarm-url tcp://1.2.3.4:2375 --plugin haproxy start`
 
 Example for SNI (multidomain) https:
 
 ```
 docker run -it -p 80:80 -p 443:443 -d -v /etc/ssl:/etc/ssl -e HAPROXY_SSL_CERT=/etc/ssl/default.crt \
-    -e HAPROXY_SSL_OPTIONS='crt /etc/ssl no-sslv3 ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS' ehazlett/interlock --swarm-url tcp://1.2.3.4:2375 -p haproxy start
+    -e HAPROXY_SSL_OPTIONS='crt /etc/ssl no-sslv3 ciphers EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH+aRSA+RC4:EECDH:EDH+aRSA:RC4:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS' rgbkrk/interlocarina --swarm-url tcp://1.2.3.4:2375 -p haproxy start
 ```
 
 In this example HAProxy will use concatinated certificates from /etc/ssl/<hostname>.crt for SNI requests, falling back to /etc/ssl/default.crt.  It also specifies secure openssl ciphers and disables SSLv3 support (POODLE attack vulnerability)

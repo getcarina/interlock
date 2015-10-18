@@ -1,22 +1,20 @@
 package main
 
 import (
-	"crypto/tls"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"os/signal"
-	"path/filepath"
 	"strings"
 	"syscall"
 	"text/tabwriter"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/ehazlett/interlock"
-	"github.com/ehazlett/interlock/plugins"
-	"github.com/ehazlett/interlock/version"
+	"github.com/rgbkrk/interlocarina"
+	"github.com/rgbkrk/interlocarina/plugins"
+	"github.com/rgbkrk/interlocarina/version"
+	"github.com/rackerlabs/libcarina"
 )
 
 func waitForInterrupt() {
@@ -28,57 +26,26 @@ func waitForInterrupt() {
 }
 
 func cmdStart(c *cli.Context) {
-	swarmUrl := c.GlobalString("swarm-url")
-	swarmTlsCaCert := c.GlobalString("swarm-tls-ca-cert")
-	swarmTlsCert := c.GlobalString("swarm-tls-cert")
-	swarmTlsKey := c.GlobalString("swarm-tls-key")
-	allowInsecureTls := c.GlobalBool("swarm-allow-insecure")
-
-	// only load env vars if no args
-	// check environment for docker client config
-	envDockerHost := os.Getenv("DOCKER_HOST")
-	if swarmUrl == "" && envDockerHost != "" {
-		swarmUrl = envDockerHost
-	}
-
-	// only load env vars if no args
-	envDockerCertPath := os.Getenv("DOCKER_CERT_PATH")
-	envDockerTlsVerify := os.Getenv("DOCKER_TLS_VERIFY")
-	if swarmTlsCaCert == "" && envDockerCertPath != "" && envDockerTlsVerify != "" {
-		swarmTlsCaCert = filepath.Join(envDockerCertPath, "ca.pem")
-		swarmTlsCert = filepath.Join(envDockerCertPath, "cert.pem")
-		swarmTlsKey = filepath.Join(envDockerCertPath, "key.pem")
-	}
+	username := c.GlobalString("username")
+	apiKey := c.GlobalString("apikey")
+	clusterName := c.GlobalString("clustername")
+	endpoint := c.GlobalString("endpoint")
 
 	config := &interlock.Config{}
-	config.SwarmUrl = swarmUrl
-	config.EnabledPlugins = c.GlobalStringSlice("plugin")
 
-	// load tlsconfig
-	var tlsConfig *tls.Config
-	if swarmTlsCaCert != "" && swarmTlsCert != "" && swarmTlsKey != "" {
-		log.Infof("using tls for communication with swarm")
-		caCert, err := ioutil.ReadFile(swarmTlsCaCert)
-		if err != nil {
-			log.Fatalf("error loading tls ca cert: %s", err)
-		}
+	client, err := libcarina.NewClusterClient(endpoint, username, apiKey)
 
-		cert, err := ioutil.ReadFile(swarmTlsCert)
-		if err != nil {
-			log.Fatalf("error loading tls cert: %s", err)
-		}
-
-		key, err := ioutil.ReadFile(swarmTlsKey)
-		if err != nil {
-			log.Fatalf("error loading tls key: %s", err)
-		}
-
-		cfg, err := getTLSConfig(caCert, cert, key, allowInsecureTls)
-		if err != nil {
-			log.Fatalf("error configuring tls: %s", err)
-		}
-		tlsConfig = cfg
+	if err != nil {
+		log.Fatalf("error getting access to the cluster: %s", err)
 	}
+
+	swarmURL, tlsConfig, err := client.GetDockerConfig(clusterName)
+	if err != nil {
+		log.Fatalf("error retrieving tls config and swarm URL: %s", err)
+	}
+
+	config.SwarmUrl = swarmURL
+	config.EnabledPlugins = c.GlobalStringSlice("plugin")
 
 	m := NewManager(config, tlsConfig)
 
