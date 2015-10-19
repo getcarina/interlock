@@ -1,8 +1,7 @@
 TAG?=latest
-APP?=interlocarina
-REPO?=rgbkrk/$(APP)
+APP?=interlock
+DOCKERHUBUSER?=carina/$(APP)
 COMMIT=`git rev-parse --short HEAD`
-COMPILE_IMAGE_SRC=$(shell find . -name Dockerfile.build)
 export GO15VENDOREXPERIMENT=1
 
 all: build
@@ -19,10 +18,10 @@ clean:
 
 image: build
 	@echo Building Interlock image $(TAG)
-	@docker build -t $(REPO):$(TAG) .
+	@docker build -t $(DOCKERHUBUSER):$(TAG) .
 
 release: build image
-	@docker push $(REPO):$(TAG)
+	@docker push $(DOCKERHUBUSER):$(TAG)
 
 test: clean
 	@go test -v ./...

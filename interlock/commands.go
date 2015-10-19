@@ -11,10 +11,10 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
+	"github.com/rackerlabs/libcarina"
 	"github.com/rgbkrk/interlocarina"
 	"github.com/rgbkrk/interlocarina/plugins"
 	"github.com/rgbkrk/interlocarina/version"
-	"github.com/rackerlabs/libcarina"
 )
 
 func waitForInterrupt() {
@@ -30,6 +30,10 @@ func cmdStart(c *cli.Context) {
 	apiKey := c.GlobalString("apikey")
 	clusterName := c.GlobalString("clustername")
 	endpoint := c.GlobalString("endpoint")
+
+	if clusterName == "" {
+		log.Fatalf("cluster name must not be empty")
+	}
 
 	config := &interlock.Config{}
 
