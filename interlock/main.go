@@ -35,7 +35,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "interlock"
 	app.Version = version.FullVersion()
-	app.Author = "@ehazlett"
+	app.Author = "@rgbkrk"
 	app.Email = ""
 	app.Usage = "event driven docker plugins"
 	app.Before = func(c *cli.Context) error {
