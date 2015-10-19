@@ -27,7 +27,7 @@ func waitForInterrupt() {
 
 func cmdStart(c *cli.Context) {
 	username := c.GlobalString("username")
-	apiKey := c.GlobalString("apikey")
+	apiKey := c.GlobalString("api-key")
 	clusterName := c.GlobalString("clustername")
 	endpoint := c.GlobalString("endpoint")
 

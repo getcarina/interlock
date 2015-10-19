@@ -1,19 +1,26 @@
 # Interlock
 Dynamic, event-driven Docker plugin system using [Swarm](https://github.com/docker/swarm).
 
+This fork relies on [libcarina](https://github.com/rackerlabs/libcarina) to connect
+directly to Carina for Swarm cluster access.
+
 # Usage
-Run `docker run rgbkrk/interlocarina list-plugins` to show available plugins.
+Run `docker run carina/interlock list-plugins` to show available plugins.
 
 Example:
 
-`docker run -P rgbkrk/interlocarina -s tcp://1.2.3.4:2375 --plugin example start`
+```
+docker run carina/interlock --username $USERNAME \
+                            --apikey $APIKEY \
+                            --clustername boatie \
+                            --plugin example start
+```
 
 # Commandline options
 
-- `--swarm-url`: url to swarm (default: tcp://127.0.0.1:2375)
-- `--swarm-tls-ca-cert`: TLS CA certificate to use with swarm (optional)
-- `--swarm-tls-cert`: TLS certificate to use with swarm (optional)
-- `--swarm-tls-key`: TLS certificate key to use with swarm (options)
+- `--username`: username for Carina
+- `--api-key`: API key for Carina
+- `--clustername`: swarm cluster to connect interlock to
 - `--plugin`: enable plugin
 - `--debug`: enable debug output
 - `--version`: show version and exit

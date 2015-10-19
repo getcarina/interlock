@@ -29,7 +29,7 @@ func main() {
 			Usage: "carina username",
 		},
 		cli.StringFlag{
-			Name:  "apikey",
+			Name:  "api-key",
 			Usage: "carina API key",
 		},
 		cli.StringFlag{
