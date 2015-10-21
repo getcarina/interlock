@@ -1,14 +1,14 @@
 package haproxy
 
 import (
-	"github.com/rgbkrk/interlocarina"
+	"github.com/getcarina/interlock"
 )
 
 const (
 	pluginName        = "haproxy"
 	pluginVersion     = "0.1"
 	pluginDescription = "haproxy load balancer and reverse proxy"
-	pluginUrl         = "https://github.com/rgbkrk/interlocarina/tree/master/plugins/haproxy"
+	pluginUrl         = "https://github.com/getcarina/interlock/tree/master/plugins/haproxy"
 )
 
 var (

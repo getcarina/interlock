@@ -9,7 +9,7 @@ type Plugin interface {
 }
 ```
 
-To create a plugin, use the [example](https://github.com/rgbkrk/interlocarina/tree/master/plugins/example)
+To create a plugin, use the [example](https://github.com/getcarina/interlock/tree/master/plugins/example)
 plugin as a reference.  Once you have created the plugin, add the blank import
 to `plugins.go` in the `interlock` package and it will be registered upon start.
 You will also need to enable it when running Interlock using the `-p <name>`

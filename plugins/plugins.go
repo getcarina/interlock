@@ -5,7 +5,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/rgbkrk/interlocarina"
+	"github.com/getcarina/interlock"
 	"github.com/samalba/dockerclient"
 )
 

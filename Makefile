@@ -11,7 +11,7 @@ add-deps:
 	@rm -rf Godeps
 
 build:
-	@cd interlock && go build -a -tags 'netgo' -ldflags "-w -X github.com/rgbkrk/interlocarina/version.GitCommit=$(COMMIT) -linkmode external -extldflags -static" .
+	@cd interlock && go build -a -tags 'netgo' -ldflags "-w -X github.com/getcarina/interlock/version.GitCommit=$(COMMIT) -linkmode external -extldflags -static" .
 
 clean:
 	@rm -rf interlock/interlock

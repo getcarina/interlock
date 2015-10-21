@@ -2,8 +2,8 @@ package main
 
 // interlock plugins
 import (
-	_ "github.com/rgbkrk/interlocarina/plugins/example"
-	_ "github.com/rgbkrk/interlocarina/plugins/haproxy"
-	_ "github.com/rgbkrk/interlocarina/plugins/nginx"
-	//_ "github.com/rgbkrk/interlocarina/plugins/stats"
+	_ "github.com/getcarina/interlock/plugins/example"
+	_ "github.com/getcarina/interlock/plugins/haproxy"
+	_ "github.com/getcarina/interlock/plugins/nginx"
+	//_ "github.com/getcarina/interlock/plugins/stats"
 )
