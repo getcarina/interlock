@@ -11,10 +11,10 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/rackerlabs/libcarina"
 	"github.com/getcarina/interlock"
 	"github.com/getcarina/interlock/plugins"
 	"github.com/getcarina/interlock/version"
+	"github.com/getcarina/libcarina"
 )
 
 func waitForInterrupt() {

@@ -1,7 +1,7 @@
 # Interlock
 Dynamic, event-driven Docker plugin system using [Swarm](https://github.com/docker/swarm).
 
-This fork relies on [libcarina](https://github.com/rackerlabs/libcarina) to connect
+This fork relies on [libcarina](https://github.com/getcarina/libcarina) to connect
 directly to Carina for Swarm cluster access.
 
 # Usage
