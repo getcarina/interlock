@@ -163,6 +163,12 @@ func loadPluginConfig() (*PluginConfig, error) {
 		cfg.SSLOpts = sslOpts
 	}
 
+
+	defaultBackend := os.Getenv("HAPROXY_DEFAULT_BACKEND")
+	if defaultBackend != "" {
+		cfg.DefaultBackend = defaultBackend
+	}
+
 	return cfg, nil
 }
 

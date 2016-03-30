@@ -35,6 +35,8 @@ frontend http-default
     {{ range $host := .Hosts }}acl is_{{ $host.Name }} hdr_beg(host) {{ $host.Domain }}
     use_backend {{ $host.Name }} if is_{{ $host.Name }}
     {{ end }}
+    {{ if .PluginConfig.DefaultBackend }}use_backend {{ .PluginConfig.DefaultBa
+    {{ end }}
 {{ range $host := .Hosts }}backend {{ $host.Name }}
     http-response add-header X-Request-Start %Ts.%ms
     balance {{ $host.BalanceAlgorithm }}

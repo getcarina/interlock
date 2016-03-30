@@ -15,4 +15,5 @@ type PluginConfig struct {
 	SSLCert                     string `json:"ssl_cert,omitempty"`
 	SSLPort                     int    `json:"ssl_port,omitempty"`
 	SSLOpts                     string `json:"ssl_opts,omitempty"`
+	DefaultBackend              string `json:"default_backend,omitempty"`
 }
