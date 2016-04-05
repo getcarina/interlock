@@ -27,6 +27,7 @@ The following configuration is available through environment variables:
 - `HAPROXY_SSL_PORT`: HAProxy SSL port (default: `443`)
 - `HAPROXY_SSL_CERT`: Path to SSL certificate for HAProxy
 - `HAPROXY_SSL_OPTS`: SSL options for HAProxy
+- `HAPROXY_DEFAULT_BACKEND`: Backend hostname to use when no Host header exists
 
 > Note: environment variables are optional.  There are sensible defaults provided.
 
